@@ -4,7 +4,9 @@ class Player:
         self._color = _color
 
     def AskMove(self):
-        int(input("What is your move?"))
+        move = str(input("What is your move?"))
+        #if isValidMove(move,board):
+
 
 
 
