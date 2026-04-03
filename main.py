@@ -9,6 +9,9 @@ class Board:
             line = []
             for column in range(8):
                 line.append(self.pieces[row][column].symbol)
+            loadedboard.append(line)
+        for item in loadedboard:
+            print(str(item))
 
     def updateBoard(self):
         pass
