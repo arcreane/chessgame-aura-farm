@@ -13,13 +13,9 @@ class Board:
             ['_','_','_','_','_','_','_','_'],
             ['_','_','_','_','_','_','_','_'],
         ]
-        for i in range(8):
-            for j in range(8):
-                for piece in self.pieces:
-                    if piece.position == [i,j]:
-                        drawnboard[i][j] = piece.symbol
-                    else:
-                        drawnboard[i][j] = '_'
+        for piece in self.pieces:
+            drawnboard[piece.position[0]][piece.position[1]] = piece.symbol
+
 
         for line in drawnboard:
             print(line)
@@ -38,6 +34,10 @@ class Piece:
     def __init__(self, color, position):
         self.color = color
         self.position = position
+        if self.color == 0:
+            self.symbol = '♟'
+        if self.color == 1:
+            self.symbol = '♙'
 
 class Bishop(Piece):
     def __init__(self,color,position):
@@ -72,20 +72,20 @@ class Bishop(Piece):
             opposition = []
 
             for movement in moveset:
-                for position in movement:
+                for coordinates in movement:
                     for piece in pieces:
-                        if position == piece.getposition():
-                            opposition.append(position)
-                            del movement[movement.index(position):]
+                        if coordinates == piece.position:
+                            opposition.append(coordinates)
+                            del movement[movement.index(coordinates):]
 
             moveset = downleft + downright + upleft + upright
             downleft = downright = upleft = upright = []
-            possiblecaptures = []
 
-            for position in opposition:
-                if position.getpiece().color != self.color:
-                    moveset.append(position)
-                    possiblecaptures.append(position)
+            for coordinates in opposition:
+                for piece in pieces:
+                    if piece.position == coordinates:
+                        if piece.color != self.color:
+                            moveset.append(coordinates)
 
         destination = [ord(move[1])-97,move[2]]
         for possibility in moveset:
@@ -94,3 +94,26 @@ class Bishop(Piece):
             else:
                 return False
 
+WPawn = Piece(0,[2,1])
+BPawn = Piece(1,[2,5])
+WBishop = Bishop(0,[4,3])
+pieces = [WPawn,BPawn,WBishop]
+board = Board(pieces)
+
+while True:
+    Board.display(board)
+    try:
+        move = str(input('Enter your next move: '))
+        if len(move) != 3 or type(move) != str:
+            raise Exception('Invalid move')
+        if move[0] != 'B':
+            raise Exception('Non-bishop movement not supported yet')
+    finally:
+        pass
+
+    if Bishop.isValidMove(WBishop,move,pieces):
+        coords = [ord(move[1])-97,int(move[2])-1]
+        for piece in pieces:
+            if piece.position == coords:
+                pieces.remove(piece)
+        WBishop.position = coords
