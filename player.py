@@ -1,11 +1,12 @@
 class Player:
-    def __init__(self, _name, _color):
-        self._name = _name
-        self._color = _color
+    def __init__(self, name, color:str):
+        self.name = name
+        self.color = color
 
     def AskMove(self):
-        move = str(input("What is your move?"))
-        #if isValidMove(move,board):
+        piece = int(input("Which pawn do you want to move?"))
+        position1 = int(input("Where is it?"))
+        position2 = int(input("Where do you want it to go?"))
 
 
 
