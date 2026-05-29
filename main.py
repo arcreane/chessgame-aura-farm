@@ -3,26 +3,36 @@ class Board:
         self.board = board
         self.pieces = pieces
 
-    def displayBoard(self):
-        loadedboard = []
-        for row in range(8):
-            line = []
-            for column in range(8):
-                line.append(self.pieces[row][column].symbol)
-            loadedboard.append(line)
-        for item in loadedboard:
-            print(str(item))
-
-    def updateBoard(self):
-        pass
-
-    def getPosition(self, neededpiece):
+    def display(self):
+        drawnboard = [
+            ['_','_','_','_','_','_','_','_'],
+            ['_','_','_','_','_','_','_','_'],
+            ['_','_','_','_','_','_','_','_'],
+            ['_','_','_','_','_','_','_','_'],
+            ['_','_','_','_','_','_','_','_'],
+            ['_','_','_','_','_','_','_','_'],
+            ['_','_','_','_','_','_','_','_'],
+            ['_','_','_','_','_','_','_','_'],
+        ]
         for piece in self.pieces:
-            if piece == neededpiece:
+            drawnboard[piece.position[0]][piece.position[1]] = piece.symbol
+
+        for line in drawnboard:
+            print(line)
+
+
+    def get_position(self, neededPiece):
+        for piece in self.pieces:
+            if piece == neededPiece:
                 return piece.position
 
-    def getPiece(self, neededpos):
-        for piece in self.pieces:
-            if piece.position == neededpos:
-                return piece
+    def get_piece(self, neededPos):
+        if self.pieces[neededPos(0)][neededPos(1)] == None:
+            return None
+        else:
+            piece = self.pieces[neededPos(0),neededPos(1)].symbol
+            return piece
+
+    def set_piece(self,board,addedpiece,position):
+        pass
 
