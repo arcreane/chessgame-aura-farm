@@ -1,3 +1,4 @@
-class Pawn(Piece):
+#unused file
 
-
+class Pawn():
+    pass
