@@ -35,16 +35,15 @@ class Bishop(Piece):
             moveset = [downright, downleft, upright, upleft]
 
             opposition = []
-
             for movement in moveset:
                 for position in movement:
-                    for piece in board.pieces:
-                        if position == piece.getposition():
+                    for piece in pieces:
+                        if position == piece.position:
                             opposition.append(position)
                             del movement[movement.index(position):]
 
             moveset = downleft + downright + upleft + upright
-            downleft = downright = upleft = upright = []
+            del downleft, downright, upright, upleft
             possiblecaptures = []
 
             for position in opposition:
@@ -58,3 +57,4 @@ class Bishop(Piece):
                 return True
             else:
                 return False
+        return None
