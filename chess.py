@@ -1,7 +1,7 @@
 #The file that runs the whole chess game
 import time as t
-#from player.py import AiPlayer, HumanPlayer
-#from board.py import Board
+from player.py import AiPlayer, HumanPlayer
+from board.py import Board
 
 def initPlayer() -> tuple:
     print("Welcome to the chess game!")
