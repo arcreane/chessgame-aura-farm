@@ -9,7 +9,7 @@ class player:
         raise
 
 
-class human_player(player):
+class Human_player(player):
     def play(self, legal_moves):
         print(f"\n{self.name}'s turn ({self.color})")
         while True:
@@ -21,7 +21,7 @@ class human_player(player):
             print("impossible move")
 
 
-class ai_player(player):
+class Ai_player(player):
     def play(self, legal_moves):
         print(f"\n{self.name}'s turn")
         move = random.choice(legal_moves)

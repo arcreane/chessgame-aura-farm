@@ -15,8 +15,6 @@ class Board:
         ]
         for piece in self.pieces:
             drawnboard[piece.position[0]][piece.position[1]] = piece.symbol
-
-
         for line in drawnboard:
             print(line)
 
@@ -28,7 +26,7 @@ class Board:
                 return None
         return 0
 
-    def set_piece(self,board,addedpiece):
+    def set_piece(self,addedpiece):
         self.pieces.append(addedpiece)
 
 class Piece:

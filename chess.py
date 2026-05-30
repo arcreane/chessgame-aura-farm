@@ -1,9 +1,9 @@
 #The file that runs the whole chess game
 import time as t
-from player.py import AiPlayer, HumanPlayer
-from board.py import Board
+from player import Ai_player, Human_player
+from main import Board
 
-def initPlayer() -> tuple:
+def initPlayer() -> tuple[any]:
     print("Welcome to the chess game!")
     t.sleep(0.7)
     ready = False
@@ -23,11 +23,11 @@ def initPlayer() -> tuple:
                     print("Please enter either W or B as a color! Format: '[NAME] [COLOR]' ")
                 else:
                     if player1[0] == "AI":
-                        player1 = AiPlayer(player1[0], player1[1])
-                        player2 = HumanPlayer(player2[0], player2[1])
+                        player1 = Ai_player(player1[0], player1[1])
+                        player2 = Human_player(player2[0], player2[1])
                     elif player2[0] == "AI":
-                        player2 = AiPlayer(player2[0], player2[1])
-                        player1 = HumanPlayer(player1[0], player1[1])
+                        player2 = Ai_player(player2[0], player2[1])
+                        player1 = Human_player(player1[0], player1[1])
                     ready = True
     return (player1, player2)
 
@@ -66,9 +66,3 @@ class Chess:
     def isValidMove(self, move):
         return True
 
-
-
-
-
-
-initPlayer()
